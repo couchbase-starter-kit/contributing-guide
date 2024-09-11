@@ -40,9 +40,16 @@ Each starter kit should include the following files, and you can find examples o
 - `LICENSE`: A license file that includes the license for the starter kit.
 - `CODE_OF_CONDUCT.md`: A code of conduct file that includes the code of conduct for the starter kit.
 - `.env.sample`: A sample environment file that includes the necessary environment variables for the starter kit.
-- `.github/workflows/test-couchbase.yml`: A GitHub Action workflow that tests the connection to Couchbase.
 - `.gitpod.yml`: A Gitpod configuration file that deploys the starter kit in Gitpod.
 - `.devcontainer/devcontainer.json`: A GitHub Codespaces configuration file that deploys the starter kit in GitHub Codespaces.
+
+### Optional Files
+
+Adding tests to verify the connection to Couchbase is required, and you can do so either by using the sample GitHub Action workflow or by creating your own test. Read more on testing in the [Testing](#testing) section.
+
+If you are using the sample GitHub Action workflow, you should include the following files in your repository:
+- `.github/workflows/test-couchbase.yml`: A GitHub Action workflow that tests the connection to Couchbase.
+- `scripts/dbSetup.nu`: A database setup script that creates the necessary buckets, scopes, and collections in Couchbase.
 
 ## Testing
 
@@ -53,9 +60,11 @@ The workflow should be modified to include the necessary environment variables f
 * The `COUCHBASE_DEFAULT_BUCKET` variable should be unique, the convention is to prepend the bucket name with the framework name, such as `spring_`, `rails_`, or `python_`.
 * The `Set up JDK` and `Setup Gradle` steps should be modified to match the build tools for your specific framework.
 
-The secrets used in the workflow are stored at the `couchbase-starter-kit` GitHub organization level, so there is no need to create them in your repository.
+The secrets used in the workflow are stored at the `couchbase-starter-kit` GitHub organization level, so there is no need to create them in your repository, once your starter kit repository is added to this organization. While you are building it, you can create repository-level secrets in your repository for testing purposes.
 
-The workflow is added to the `.github/workflows` directory in your repository and can be named `test-connection.yml` or similar.
+The workflow is added to the `.github/workflows` directory in your repository and can be named `test-connection.yml` or similar. Make sure to include the database setup script, `dbSetup.nu`, in a `scripts/` directory in the root level of your repository, if you choose to use the sample workflow.
+
+Alternatively, you can build your own test in the testing framework of your choice appropriate for the language or framework you are using inside your starter kit. If you choose to do this, make sure to include the necessary instructions in the README file, and add a GitHub Action workflow that runs the test from your codebase.
 
 ## Deployment
 
