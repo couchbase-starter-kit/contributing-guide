@@ -11,6 +11,14 @@ Please review the [Contributing](#contributing) section briefly to understand th
 | Spring    | [Spring Starter Kit](https://github.com/couchbase-starter-kit/couchbase-spring-starter) |
 | Rails     | [Rails Starter Kit](https://github.com/couchbase-starter-kit/couchbase-rails-starter) |
 
+## Community Starter Kits
+
+Want to create a new starter kit for a framework or language not listed above? Check out the currently requested starter kits in the [Issues](https://github.com/couchbase-starter-kit/contributing-guide/issues) section. If you don't see the framework or language you are interested in, feel free to open a new Issue and let us know what you would like to contribute.
+
+| Framework | Repository Link |
+|-----------|-----------------|
+| TBA       | [TBA](https://github.com/couchbase-starter-kit/contributing-guide) |
+
 ## Required Environment Variables
 
 | Variable Name                      | Description                                                 |      Default value       |
