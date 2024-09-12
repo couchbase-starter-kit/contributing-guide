@@ -78,6 +78,11 @@ The sample configuration for Gitpod can be found in the [samples/.gitpod.yml](sa
 
 The sample configuration for GitHub Codespaces can be found in the [samples/.devcontainer/devcontainer.json](samples/.devcontainer/devcontainer.json) file. This file, along with the accompanying `postCreate.sh` and `postStart.sh` shell scripts, should be included in the `.devcontainer` directory in the root of your repository.
 
+
+Watch this video to see how to get started using GitHub Codespaces to experiment with a Couchbase starter kit all within the virtual environment.
+
+https://github.com/user-attachments/assets/abfa824b-c9f0-4b91-85f3-55151a21c2ee
+
 ## Contributing
 
 The best way to get started is by looking at the open Issues in this repository. If you see a framework or language that you are familiar with, feel free to contribute a starter kit for that framework.
