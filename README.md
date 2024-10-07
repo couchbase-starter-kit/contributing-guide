@@ -1,32 +1,24 @@
-# Contributing to Couchbase Starter Kits
+<!---
+This is a sample README.md file for a Couchbase Starter Kit. It includes a template for the README file that you can use in your repository. You can copy the contents of this file and replace the placeholders with the appropriate information for your starter kit.
+-->
 
-Thank you for your interest in contributing to Couchbase starter kits! This guide will help you understand how to contribute new starter kits for various frameworks.
+# Couchbase [Node/Typescript] Starter Kit
 
-Please review the [Contributing](#contributing) section briefly to understand the process of contributing new starter kits. When you are ready to get started, this README and the accompanying [sample files](samples) will help you create a new starter kit.
+![Test Suite](https://github.com/couchbase-starter-kit/URL/actions/workflows/run-tests.yml/badge.svg)
+![Couchbase Capella](https://img.shields.io/badge/Couchbase_Capella-Enabled-red)
+[![License: MIT](https://cdn.prod.website-files.com/5e0f1144930a8bc8aace526c/65dd9eb5aaca434fac4f1c34_License-MIT-blue.svg)](/LICENSE)
+![Static Badge](https://img.shields.io/badge/Code_of_Conduct-Contributor_Covenant-violet.svg)
 
-## Current Starter Kits
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/couchbase-starter-kit/URL)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/couchbase-starter-kit/URL)
 
-| Framework | Repository Link |
-|-----------|-----------------|
-| Spring    | [Spring Starter Kit](https://github.com/couchbase-starter-kit/couchbase-spring-starter) |
-| Rails     | [Rails Starter Kit](https://github.com/couchbase-starter-kit/couchbase-rails-starter) |
-
-## Community Starter Kits
-
-Want to create a new starter kit for a framework or language not listed above? Check out the currently requested starter kits in the [Issues](https://github.com/couchbase-starter-kit/contributing-guide/issues) section. If you don't see the framework or language you are interested in, feel free to open a new Issue and let us know what you would like to contribute.
-
-| Framework | Repository Link |
-|-----------|-----------------|
-| TBA       | [TBA](https://github.com/couchbase-starter-kit/contributing-guide) |
-
-## Required Environment Variables
+## Configuration
 
 | Variable Name                      | Description                                                 |      Default value       |
 |:-----------------------------------|:------------------------------------------------------------|:------------------------:|
-| SPRING_APPLICATION_NAME            | The name of your application, used for OTLP as well         | couchbase-spring-starter |
-| SPRING_COUCHBASE_CONNECTION_STRING | A couchbase connection string                               |            -             |
-| SPRING_COUCHBASE_USERNAME          | Username for authentication with Couchbase                  |            -             |
-| SPRING_COUCHBASE_PASSWORD          | Password for authentication with Couchbase                  |            -             |
+| NODE_COUCHBASE_CONNECTION_STRING  | A couchbase connection string                           |            -             |
+| NODE_COUCHBASE_USERNAME           | Username for authentication with Couchbase              |            -             |
+| NODE_COUCHBASE_PASSWORD           | Password for authentication with Couchbase              |            -             |
 | COUCHBASE_USE_CAPELLA              | Use to change the connection profile                        |          false           |
 | COUCHBASE_DEFAULT_BUCKET           | The name of the Couchbase Bucket, parent of the scope       |         default          |
 | COUCHBASE_DEFAULT_SCOPE            | The name of the Couchbase scope, parent of the collection   |         _default         |
@@ -34,65 +26,79 @@ Want to create a new starter kit for a framework or language not listed above? C
 | COUCHBASE_OTLP_ENABLED             | Enable traces and metrics OTLP export                       |          false           |
 | COUCHBASE_OTLP_ENDPOINT            | The OTLP server endpoint to send metrics and traces         |            -             |
 
-## Basic Functionality
+### Getting started
 
-Each starter kit should include the following basic functionalities:
-- Establish a connection to Couchbase, with the option for both Couchbase Server and Capella.
-- Include the appropriate Couchbase SDK for the language/framework.
+Follow these steps to get the starter kit up and running on your local machine.
 
-## Necessary Files
+**Prerequisites**
 
-Each starter kit should include the following files, and you can find examples of these in the [samples](samples) directory that you can use in your repository:
+Make sure you have the following installed:
 
-- `README.md`: A README file that includes instructions on how to run the starter kit.
-- `LICENSE`: A license file that includes the license for the starter kit.
-- `CODE_OF_CONDUCT.md`: A code of conduct file that includes the code of conduct for the starter kit.
-- `.env.sample`: A sample environment file that includes the necessary environment variables for the starter kit.
-- `.gitpod.yml`: A Gitpod configuration file that deploys the starter kit in Gitpod.
-- `.devcontainer/devcontainer.json`: A GitHub Codespaces configuration file that deploys the starter kit in GitHub Codespaces.
+* Node.js
 
-### Optional Files
+You will also need an account on Couchbase Capella to create a cluster and obtain the connection details.
 
-Adding tests to verify the connection to Couchbase is required, and you can do so either by using the sample GitHub Action workflow or by creating your own test. Read more on testing in the [Testing](#testing) section.
+**Clone the repository**
 
-If you are using the sample GitHub Action workflow, you should include the following files in your repository:
-- `.github/workflows/test-couchbase.yml`: A GitHub Action workflow that tests the connection to Couchbase.
-- `scripts/dbSetup.nu`: A database setup script that creates the necessary buckets, scopes, and collections in Couchbase.
+```bash
+git clone https://github.com/couchbase-starter-kit/couchbase.git
+cd URL
+```
 
-## Testing
+**Install dependencies**
 
-To ensure your starter kit works correctly, you should include tests that verify the connection to Couchbase. The [sample workflow](samples/.github/workflows/test-connection.yml) can be used to test the connection to Couchbase.
+```bash
+bundle install
+```
 
-The workflow should be modified to include the necessary environment variables for your starter kit:
+**Configure Couchbase Credentials**
 
-* The `COUCHBASE_DEFAULT_BUCKET` variable should be unique, the convention is to prepend the bucket name with the framework name, such as `spring_`, `rails_`, or `python_`.
-* The `Set up JDK` and `Setup Gradle` steps should be modified to match the build tools for your specific framework.
+Copy the `.env.sample` file in the root directory of the project and rename it to `.env`. Update the `.env` file with your Couchbase credentials as follows:
 
-The secrets used in the workflow are stored at the `couchbase-starter-kit` GitHub organization level, so there is no need to create them in your repository, once your starter kit repository is added to this organization. While you are building it, you can create repository-level secrets in your repository for testing purposes.
+```bash
+NODE_COUCHBASE_CONNECTION_STRING=
+NODE_COUCHBASE_USERNAME=
+NODE_COUCHBASE_PASSWORD=
+COUCHBASE_USE_CAPELLA=
+COUCHBASE_DEFAULT_BUCKET=default
+COUCHBASE_DEFAULT_SCOPE=_default
+COUCHBASE_DEFAULT_COLLECTION=_default
+COUCHBASE_OTLP_ENABLED=false
+COUCHBASE_OTLP_ENDPOINT=
+```
 
-The workflow is added to the `.github/workflows` directory in your repository and can be named `test-connection.yml` or similar. Make sure to include the database setup script, `dbSetup.nu`, in a `scripts/` directory in the root level of your repository, if you choose to use the sample workflow.
+You can obtain those credentials by first creating an account on Couchbase Capella at [https://cloud.couchbase.com/](https://cloud.couchbase.com/) and then creating a database called `rails_starter_app`. Inside the database, create a bucket. The name of the bucket is what you should use for the `COUCHBASE_DEFAULT_BUCKET` environment variable.
 
-Alternatively, you can build your own test in the testing framework of your choice appropriate for the language or framework you are using inside your starter kit. If you choose to do this, make sure to include the necessary instructions in the README file, and add a GitHub Action workflow that runs the test from your codebase.
+Once you have done so, you can navigate to the `Connect` tab in the database and copy the connection string URL. This is what you should use for the `NODE_COUCHBASE_CONNECTION_STRING` environment variable. You will also need to create a user with the appropriate permissions and use the username and password for the `NODE_COUCHBASE_USERNAME` and `NODE_COUCHBASE_PASSWORD` environment variables.
 
-## Deployment
+**Running the Test Suite**
 
-The starter kit should be ready to deploy in any number of environments. At a minimum, the starter kit should be deployable in Gitpod, and GitHub Codespaces. See the [sample README](samples/README.md) to be included in your repository to view the Gitpod and GitHub Codespaces buttons that are added to the top of the README.
+This application includes the beginnings of a test suite using [language testing framework]. To run the test suite, use the following command:
 
-### Gitpod
+```bash
+framework testing command line
+```
 
-The sample configuration for Gitpod can be found in the [samples/.gitpod.yml](samples/.gitpod.yml) file. This file should be included in the root of your repository.
+This will run all the tests and output the results in the terminal. You can run any specific test file by passing the file path as an argument to the `command_to_run_tests` command, as follows:
 
-### GitHub Codespaces
+```bash
+framework testing command line path/to/test/file
+```
 
-The sample configuration for GitHub Codespaces can be found in the [samples/.devcontainer/devcontainer.json](samples/.devcontainer/devcontainer.json) file. This file, along with the accompanying `postCreate.sh` and `postStart.sh` shell scripts, should be included in the `.devcontainer` directory in the root of your repository.
+**Starting the Application**
 
+To start the application, run the following command:
 
-Watch this video to see how to get started using GitHub Codespaces to experiment with a Couchbase starter kit all within the virtual environment.
+```bash
+framework start command line
+```
 
-https://github.com/user-attachments/assets/abfa824b-c9f0-4b91-85f3-55151a21c2ee
+This will start the [framework] server, and you can access the application at [url:port](url:port).
 
-## Contributing
+### Contributing
 
-The best way to get started is by looking at the open Issues in this repository. If you see a framework or language that you are familiar with, feel free to contribute a starter kit for that framework.
+Contributions are more than welcome! If you encounter any bugs or issues with the application, please open an issue on the GitHub repository. If you would like to contribute code, feel free to open a pull request with your changes. All contributors are expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
-What about frameworks or languages not mentioned in the open Issues? Feel free to open a new Issue and let us know what you would like to contribute. The team will be happy to review, provide feedback and guidance, and help you get started.
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
