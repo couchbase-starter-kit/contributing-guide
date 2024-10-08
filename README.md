@@ -17,7 +17,7 @@ Want to create a new starter kit for a framework or language not listed above? C
 
 | Framework | Repository Link |
 |-----------|-----------------|
-| TBA       | [TBA](https://github.com/couchbase-starter-kit/contributing-guide) |
+| Node.js   | [Node.js Starter Kit](https://github.com/codercatdev/couchbase-node-starter) |
 
 ## Required Environment Variables
 
