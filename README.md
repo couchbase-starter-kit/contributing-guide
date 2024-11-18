@@ -18,6 +18,7 @@ Want to create a new starter kit for a framework or language not listed above? C
 | Framework | Repository Link |
 |-----------|-----------------|
 | Node.js   | [Node.js Starter Kit](https://github.com/codercatdev/couchbase-node-starter) |
+| Go        | [Go Starter Kit](https://github.com/Dhairya3124/couchbase-go-starter) |
 
 ## Required Environment Variables
 
